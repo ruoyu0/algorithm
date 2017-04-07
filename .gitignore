@@ -1,2 +1,5 @@
 # pycharm setting files
 .idea
+
+# 忽略.pyc文件
+*.pyc
