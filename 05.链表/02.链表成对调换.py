@@ -11,6 +11,16 @@ class ListNode:
         self.next = None
 
 
+class Solution:
+    def swap_pairs(self, head):
+        if head != None and head.next != None:
+            next = head.next
+            head.next = self.swapPairs(next.next)
+            next.next = head
+            return next
+        return head
+
+
 if __name__ == '__main__':
     # 输入
     n = int(raw_input())
