@@ -6,29 +6,18 @@
 
 
 class Solution(object):
-    def t_sort(self, arr, start, end):
-        if start >= end:
-            return
-        l, r, temp = start, end, arr[start]
-        while l < r:
-            while r > l and arr[r] > temp:
-                r -= 1
-            if l < r:
-                arr[l] = arr[r]
-                l += 1
-            while l < r and arr[l] < temp:
-                l += 1
-            if l < r:
-                arr[r] = arr[l]
-                r -= 1
-        arr[l] = temp
-        self.t_sort(arr, start, l - 1)
-        self.t_sort(arr, l + 1, end)
+    def qsort(self, seq):
+        if len(seq) <= 1:
+            return seq
+        else:
+            pivot = seq[0]
+            lesser = self.qsort([x for x in seq[1:] if x < pivot])
+            greater = self.qsort([x for x in seq[1:] if x >= pivot])
+            return lesser + [pivot] + greater
 
 
-arr = [0, -3, 2, 5, -2, 6, 1000020, -232323]
-
-obj = Solution()
-obj.t_sort(arr, 0, len(arr) - 1)
-
-print arr
+if __name__ == '__main__':
+    arr = [0, -3, 2, 5, -2, 6, 1000020, -232323]
+    obj = Solution()
+    qsort_res = obj.qsort(arr)
+    print qsort_res
